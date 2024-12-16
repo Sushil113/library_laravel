@@ -28,10 +28,12 @@
                 </div>
 
                 <div>
-                    <button
-                        class="bg-white text-blue-600 px-4 py-2 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-400">
-                        Login
-                    </button>
+                    <a href="{{route('login')}}" class="no-underline">  
+                        <button
+                            class="bg-white text-blue-600 px-4 py-2 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                            Login
+                        </button>
+                    </a>
                 </div>
             </div>
 
