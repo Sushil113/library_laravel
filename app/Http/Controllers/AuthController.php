@@ -2,20 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
     //show the login page
-    public function login()
+    public function showLogin()
     {
         return view('auth.login');
     }
 
     //show the register page
-    public function register()
+    public function showRegister()
     {
         return view('auth.register');
     }
@@ -42,5 +43,31 @@ class AuthController extends Controller
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Failed to create account. Please try again.');
         }
+    }
+
+    public function login(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|min:8',
+        ]);
+
+        if (Auth::attempt($request->only('email', 'password'))) {
+            $request->session()->regenerate(); 
+            return redirect()->intended('/')->with('success', 'Login successful!');
+        }
+
+        return back()->withErrors([
+            'email' => 'Invalid Credentials',
+        ])->withInput($request->except('password'));
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/login')->with('success', 'Logged out successfully!');
     }
 }

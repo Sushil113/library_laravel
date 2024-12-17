@@ -15,7 +15,8 @@
 
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-            <form class="space-y-6" action="#" method="POST">
+            <form class="space-y-6" action="{{route('login')}}" method="POST">
+                @csrf
                 <div>
                     <label for="email" class="block text-sm font-medium text-gray-700">
                         Email address
@@ -37,6 +38,16 @@
                             placeholder="Enter your password">
                     </div>
                 </div>
+
+                @if ($errors->any())
+                <div class="bg-red-100 text-red-700 p-4 rounded mb-4">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
 
                 <div class="flex items-center justify-between">
                     <div class="flex items-center">
