@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('role');
             $table->integer('semester')->nullable();
+            $table->boolean('email_verification_status')->default('0');
             $table->rememberToken();
             $table->timestamps();
         });

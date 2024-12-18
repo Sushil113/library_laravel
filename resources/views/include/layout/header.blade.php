@@ -55,7 +55,7 @@
                         role="menu"
                         aria-orientation="vertical"
                         aria-labelledby="user-menu-button">
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
+                        <a href="{{route('profile')}}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
                             Profile
                         </a>
                         <form method="POST" action="{{ route('logout') }}" class="block">
