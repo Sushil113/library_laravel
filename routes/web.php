@@ -16,6 +16,10 @@ Route::get('/verification', [AuthController::class,'showOtpPage'])->name('verifi
 Route::post('/verification', [AuthController::class, 'verifyOtp'])->name('verify');
 Route::post('/login', [AuthController::class,'login'])->name('login');
 Route::post('/logout', [AuthController::class,'logout'])->name('logout');
+Route::get('/forgetpassword', [AuthController::class, 'forgetpassword'])->name('forgetpassword');
+Route::post('/forgetpassword', [AuthController::class, 'sendResetLinkEmail'])->name('sendResetLinkEmail');
+Route::get('/reset-password/{token}', [AuthController::class, 'showResetForm'])->name('password.reset');
+Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('password.update');
 
 //UserController routes
 Route::get('/profile', [UserController::class, 'showProfile'])->name('profile');

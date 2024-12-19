@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Mail\OtpMail;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Facades\Password;
 
 class AuthController extends Controller
 {
@@ -27,6 +29,11 @@ class AuthController extends Controller
     {
         $user_id = $request->query('user_id');
         return view('auth.otp', compact('user_id'));
+    }
+
+    public function forgetpassword()
+    {
+        return view('auth.forget_password');
     }
 
     public function store(Request $request)
@@ -110,7 +117,7 @@ class AuthController extends Controller
             $user = Auth::user();
 
             if ($user->email_verification_status != 1) {
-                Auth::logout(); 
+                Auth::logout();
                 return back()->withErrors([
                     'email' => 'Your account is not verified. Please verify your account.',
                 ])->withInput($request->except('password'));
@@ -121,7 +128,7 @@ class AuthController extends Controller
         }
 
         return back()->withErrors([
-            'email' => 'Invalid Credentials',   
+            'email' => 'Invalid Credentials',
         ])->withInput($request->except('password'));
     }
 
@@ -131,6 +138,62 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/login')->with('success', 'Logged out successfully!');
+        return redirect('/')->with('success', 'Logged out successfully!');
+    }
+
+    public function sendResetLinkEmail(Request $request)
+    {
+        $request->validate(['email' => 'required|email']);
+
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user) {
+            return back()->withErrors(['email' => 'We could not find a user with that email address.']);
+        }
+
+        $status = Password::sendResetLink(
+            $request->only('email')
+        );
+
+        // return $status === Password::RESET_LINK_SENT
+        //     ? back()->with(['status' => __($status)])
+        //     : back()->withErrors(['email' => __($status)]);
+
+        if ($status === Password::RESET_LINK_SENT) {
+            return redirect('/')->with('success', 'Password reset link sent successfully!');
+        } else {
+            return back()->withErrors(['email' => __($status)]);
+        }
+    }
+
+    public function showResetForm(Request $request)
+    {
+        $email = $request->query('email'); 
+        $token = $request->route('token'); 
+
+        return view('auth.reset_password', compact('email', 'token'));
+    }
+    public function resetPassword(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'token' => 'required',
+            'password' => 'required|confirmed|min:8',
+        ]);
+
+        $status = Password::reset(
+            $request->only('email', 'password', 'password_confirmation', 'token'),
+            function ($user, $password) {
+                $user->forceFill([
+                    'password' => Hash::make($password),
+                ])->save();
+
+                $user->setRememberToken(Str::random(60));
+            }
+        );
+
+        return $status === Password::PASSWORD_RESET
+            ? redirect()->route('login')->with('success', 'Your password has been reset successfully!')
+            : back()->withErrors(['email' => __($status)]);
     }
 }
