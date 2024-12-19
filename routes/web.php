@@ -19,3 +19,4 @@ Route::post('/logout', [AuthController::class,'logout'])->name('logout');
 
 //UserController routes
 Route::get('/profile', [UserController::class, 'showProfile'])->name('profile');
+Route::put('/profile/update', [UserController::class, 'updateProfile'])->name('profile.update');

@@ -13,7 +13,7 @@
         </div>
 
         <!-- Update Form -->
-        <form action="#" method="POST" enctype="multipart/form-data" class="space-y-4">
+        <form action="{{route('profile.update')}}" method="POST" enctype="multipart/form-data" class="space-y-4">
             @csrf
             @method('PUT')
             <div>
@@ -25,14 +25,7 @@
             <div>
                 <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
                 <input type="email" name="email" id="email" value="{{ auth()->user()->email }}"
-                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500">
-            </div>
-
-            <div>
-                <label for="password" class="block text-sm font-medium text-gray-700">New Password</label>
-                <input type="password" name="password" id="password"
-                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500">
-                <small class="text-gray-500">Leave blank if you don't want to update the password</small>
+                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500" readonly>
             </div>
 
             <div>
@@ -49,6 +42,16 @@
                     <option value="8" {{ auth()->user()->semester == 8 ? 'selected' : '' }}>8th Semester</option>
                 </select>
             </div>
+
+            @if($errors->any())
+            <div class="bg-red-500 text-white px-4 py-2 rounded-md">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
 
             <div>
                 <button type="submit"
