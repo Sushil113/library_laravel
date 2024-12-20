@@ -24,7 +24,8 @@ class User extends Authenticatable
         'role',
         'semester',
         'email_verification_status',
-        'email_verified_at'
+        'email_verified_at',
+        'google_id',
     ];
 
     /**

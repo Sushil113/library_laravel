@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('role');
             $table->integer('semester')->nullable();
             $table->boolean('email_verification_status')->default('0');
+            $table->string('google_id')->nullable()->unique();
             $table->rememberToken();
             $table->timestamps();
         });

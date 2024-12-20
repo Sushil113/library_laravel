@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\GoogleController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -20,6 +21,10 @@ Route::get('/forgetpassword', [AuthController::class, 'forgetpassword'])->name('
 Route::post('/forgetpassword', [AuthController::class, 'sendResetLinkEmail'])->name('sendResetLinkEmail');
 Route::get('/reset-password/{token}', [AuthController::class, 'showResetForm'])->name('password.reset');
 Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('password.update');
+
+//google controller
+Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('auth.google');
+Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
 //UserController routes
 Route::get('/profile', [UserController::class, 'showProfile'])->name('profile');

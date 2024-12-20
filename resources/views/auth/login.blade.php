@@ -86,29 +86,16 @@
                     </div>
                 </div>
 
-                <div class="mt-6 grid grid-cols-3 gap-3">
+                <div class="mt-6">
                     <div>
-                        <a href="#"
+                        <a href="{{ route('auth.google') }}"
                             class="w-full flex items-center justify-center px-8 py-3 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
-                            <img class="h-5 w-5" src="https://www.svgrepo.com/show/512120/facebook-176.svg"
-                                alt="">
-                        </a>
-                    </div>
-                    <div>
-                        <a href="#"
-                            class="w-full flex items-center justify-center px-8 py-3 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
-                            <img class="h-5 w-5" src="https://www.svgrepo.com/show/513008/twitter-154.svg"
-                                alt="">
-                        </a>
-                    </div>
-                    <div>
-                        <a href="#"
-                            class="w-full flex items-center justify-center px-8 py-3 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
-                            <img class="h-6 w-6" src="https://www.svgrepo.com/show/506498/google.svg"
-                                alt="">
+                            <img class="h-6 w-6 mr-2" src="https://www.svgrepo.com/show/506498/google.svg" alt="Google Logo">
+                            Login with Google
                         </a>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
