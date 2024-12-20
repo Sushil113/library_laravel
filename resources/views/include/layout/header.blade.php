@@ -2,13 +2,53 @@
     <nav class="bg-blue-600 p-4 shadow-md">
         <div class="container mx-auto flex items-center justify-between">
 
-            <div class="text-white text-lg font-bold">MyLogo</div>
+            <div class="text-white text-lg font-bold inline-flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 pr-1">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
+                </svg>
+                Library
+            </div>
 
             <div class="hidden md:flex space-x-6">
                 <a href="#" class="text-white hover:text-gray-300">Home</a>
-                <a href="#" class="text-white hover:text-gray-300">About Us</a>
-                <a href="#" class="text-white hover:text-gray-300">Contact</a>
-                <a href="#" class="text-white hover:text-gray-300">Upload</a>
+                <div class="relative group">
+                    <button class="text-white hover:text-gray-300 flex items-center space-x-1">
+                        <span>Notes</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="absolute hidden group-hover:block bg-white border rounded shadow-md mt-[1px] w-48">
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">1th Semester</a>
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">2th Semester</a>
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">3th Semester</a>
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">4th Semester</a>
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">5th Semester</a>
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">6th Semester</a>
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">7th Semester</a>
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">8th Semester</a>
+                    </div>
+                </div>
+                <div class="relative group">
+                    <button class="text-white hover:text-gray-300 flex items-center space-x-1">
+                        <span>Questions</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="absolute hidden group-hover:block bg-white border rounded shadow-md mt-[1px] w-48">
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">1th questions</a>
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">2th questions</a>
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">3th questions</a>
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">4th questions</a>
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">5th questions</a>
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">6th questions</a>
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">7th questions</a>
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">8th questions</a>
+                    </div>
+                </div>
+
+                <a href="#" class="text-white hover:text-gray-300">Upload Notes</a>
             </div>
 
             <div class="flex items-center space-x-4">
@@ -17,13 +57,8 @@
                         type="text"
                         placeholder="Search..."
                         class="pl-10 pr-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" />
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-5 w-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16l-4-4m0 0l4-4m-4 4h16" />
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 h-5 w-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                     </svg>
                 </div>
                 @guest
@@ -86,7 +121,7 @@
 
     button.addEventListener('click', function(event) {
         menu.classList.toggle('hidden');
-        event.stopPropagation(); 
+        event.stopPropagation();
     });
 
     document.addEventListener('click', function() {
