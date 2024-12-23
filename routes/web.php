@@ -1,12 +1,16 @@
 <?php
 
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GoogleController;
 
 Route::get('/', function () {
-    return view('welcome');
+    $notes = Post::where('type', 'note')->with('attachments')->latest()->get();
+    return view('welcome', compact('notes'));
+    //return view('welcome');
 });
 
 //AuthController routes
@@ -22,10 +26,14 @@ Route::post('/forgetpassword', [AuthController::class, 'sendResetLinkEmail'])->n
 Route::get('/reset-password/{token}', [AuthController::class, 'showResetForm'])->name('password.reset');
 Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('password.update');
 
-//google controller
+//GoogleController routes
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('auth.google');
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
 //UserController routes
 Route::get('/profile', [UserController::class, 'showProfile'])->name('profile');
 Route::put('/profile/update', [UserController::class, 'updateProfile'])->name('profile.update');
+
+//PostController routes
+Route::get('/upload', [PostController::class, 'showUploadPage'])->name('upload.page');
+Route::post('/posts', [PostController::class, 'store'])->name('posts.store');

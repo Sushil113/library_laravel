@@ -48,7 +48,7 @@
                     </div>
                 </div>
 
-                <a href="#" class="text-white hover:text-gray-300">Upload Notes</a>
+                <a href="{{route('upload.page')}}" class="text-white hover:text-gray-300">Upload Notes</a>
             </div>
 
             <div class="flex items-center space-x-4">
