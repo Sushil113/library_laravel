@@ -13,6 +13,14 @@ class PostController extends Controller
         return view('upload');
     }
 
+    public function showPostDetails($id)
+    {
+        $post = Post::findOrFail($id);
+        $pdfAttachment = PostAttachment::where('post_id', $id)->where('file_type', 'pdf')->first();
+
+        return view('postDetails', compact('post', 'pdfAttachment'));
+    }
+
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -20,13 +28,13 @@ class PostController extends Controller
             'short_desc' => 'required|string',
             'type' => 'required|in:note,question,post',
             'semester' => 'required|string|max:50',
-            'files.*' => 'nullable|file|max:10240', 
+            'files.*' => 'nullable|file|max:10240',
         ]);
 
         if ($request->type === 'note') {
             $request->validate(
                 [
-                    'files.*' => 'mimes:pdf|max:10240', 
+                    'files.*' => 'mimes:pdf|max:10240',
                 ],
                 [
                     'files.*.mimes' => 'For notes, only PDF files are allowed.',

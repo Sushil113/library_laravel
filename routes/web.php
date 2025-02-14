@@ -3,15 +3,12 @@
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GoogleController;
 
-Route::get('/', function () {
-    $notes = Post::where('type', 'note')->with('attachments')->latest()->get();
-    return view('welcome', compact('notes'));
-    //return view('welcome');
-});
+Route::get('/', [HomeController::class, 'home'])->name('home');
 
 //AuthController routes
 Route::get('/login', [AuthController::class, 'showLogin'])->name('loginpage');
@@ -37,3 +34,4 @@ Route::put('/profile/update', [UserController::class, 'updateProfile'])->name('p
 //PostController routes
 Route::get('/upload', [PostController::class, 'showUploadPage'])->name('upload.page');
 Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
+Route::get('/posts/{post}', [PostController::class, 'showPostDetails'])->name('posts.show');    

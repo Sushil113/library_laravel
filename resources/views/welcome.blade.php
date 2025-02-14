@@ -64,7 +64,7 @@
                     </div>
                     <div>
                         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">
-                            <a href="#">View</a>
+                            <a href="{{route('posts.show', $note->id)}}">View</a>
                         </button>
                     </div>
                 </div>
