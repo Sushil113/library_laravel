@@ -17,7 +17,7 @@
 
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-            <form method="POST" action="{{ route('register') }}">
+            <form method="POST" action="{{ route('user.store') }}">
                 @csrf
                 <div>
                     <label for="email" class="block text-sm font-medium leading-5  text-gray-700">Name</label>
@@ -109,14 +109,9 @@
         </div>
     </div>
 </div>
+@endsection
 
+@section('script')
 <script>
-    const dropdownButton = document.getElementById('dropdownButton');
-    const dropdownMenu = document.getElementById('dropdownMenu');
-
-    dropdownButton.addEventListener('click', () => {
-        dropdownMenu.classList.toggle('hidden');
-    });
 </script>
-
 @endsection
