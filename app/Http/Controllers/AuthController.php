@@ -63,7 +63,7 @@ class AuthController extends Controller
                 'title' => 'OTP Verification',
                 'heading' => 'Verify Your Account',
                 'otp' => $otp,
-                'message' => 'Please use this OTP to verify your account. It is valid for 5 minutes.'
+                'body' => 'Please use this OTP to verify your account. It is valid for 5 minutes.'
             ];
 
             Mail::to($user->email)->send(new OtpMail($data));
@@ -168,8 +168,8 @@ class AuthController extends Controller
 
     public function showResetForm(Request $request)
     {
-        $email = $request->query('email'); 
-        $token = $request->route('token'); 
+        $email = $request->query('email');
+        $token = $request->route('token');
 
         return view('auth.reset_password', compact('email', 'token'));
     }
