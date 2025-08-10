@@ -13,7 +13,7 @@ Route::get('/', [HomeController::class, 'home'])->name('home');
 //AuthController routes
 Route::get('/login', [AuthController::class, 'showLogin'])->name('loginpage');
 Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
-Route::post('/register', [AuthController::class, 'store'])->name('store');
+Route::post('/register', [AuthController::class, 'store'])->name('user.store');
 Route::get('/verification', [AuthController::class,'showOtpPage'])->name('verification');
 Route::post('/verification', [AuthController::class, 'verifyOtp'])->name('verify');
 Route::post('/login', [AuthController::class,'login'])->name('login');
@@ -34,4 +34,4 @@ Route::put('/profile/update', [UserController::class, 'updateProfile'])->name('p
 //PostController routes
 Route::get('/upload', [PostController::class, 'showUploadPage'])->name('upload.page');
 Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
-Route::get('/posts/{post}', [PostController::class, 'showPostDetails'])->name('posts.show');    
+Route::get('/posts/{post}', [PostController::class, 'showPostDetails'])->name('posts.show');
