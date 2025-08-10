@@ -14,9 +14,9 @@
 
     @yield('content')
 
-    @include('include.layout.footer')
+    @yield('script')
 
-    <script src="{{ asset('js/custom.js') }}"></script>
+    @include('include.layout.footer')
 
 </body>
 
