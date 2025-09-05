@@ -38,7 +38,7 @@ npm install
 ### 5. Set Up the Database
 Migrate the database:
 ```bash
-php artisan migrate:fresh
+php artisan migrate
 ```
 Seed the database:
 ```bash
